@@ -17,16 +17,18 @@ async function Connect() {
     console.log("Connected to mongo db");
 
     app.get("/", async (req, res) => {
-      const user = await User.create({ name: "Dung", age: 22 });
-      const allUsers = await User.find();
       res.json({ message: "hello" });
     });
 
     app.get("/allproducts", async (req, res) => {
       const allProducts = await Products.find();
-      res.send(allProducts);
+      res.json({ status: "OK", data: allProducts });
     });
 
+    app.get("/hotproducts", async (req, res) => {
+      const hotproducts = await Products.find({ hot: true });
+      res.json({ status: "OK", data: hotproducts });
+    });
     app.post("/uploadproduct", uploadMiddleware.any(), async (req, res) => {
       const files = req.files;
       const arrImages = files.map((file) => file.filename);
@@ -42,7 +44,7 @@ async function Connect() {
         description: data.description,
         images: arrImages,
       };
-      
+
       await Products.create(newProduct);
 
       res.json({ status: "OK", data, image: files });
