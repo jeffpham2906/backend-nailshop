@@ -23,7 +23,7 @@ async function Connect() {
     console.log("Connected to mongo db");
 
     app.get("/", cors(), async (req, res) => {
-      res.json({ status: 'Connected' })
+      res.send('hello')
     });
 
     app.get("/allproducts", async (req, res) => {
