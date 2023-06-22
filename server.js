@@ -8,7 +8,12 @@ const Products = require("./Products");
 const Orders = require("./Orders");
 const uri = "mongodb://127.0.0.1:27017/nailshop";
 const app = express();
-app.use(cors());
+
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://diamondnail.netlify.app'],
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
+}));
+
 app.use(express.json());
 app.use(express.static("public"));
 
@@ -17,8 +22,8 @@ async function Connect() {
     await mongoose.connect(uri);
     console.log("Connected to mongo db");
 
-    app.get("/", async (req, res) => {
-      res.json({ message: "hello" });
+    app.get("/", cors(), async (req, res) => {
+      res.json({ status: 'Connected' })
     });
 
     app.get("/allproducts", async (req, res) => {
