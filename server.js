@@ -10,7 +10,7 @@ const uri = "mongodb://127.0.0.1:27017/nailshop";
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://diamondnail.netlify.app'],
+  origin: ['http://localhost:3000', 'https://diamondnail.netlify.app/'],
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
 }));
 
