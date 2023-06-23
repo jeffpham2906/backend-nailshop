@@ -24,7 +24,7 @@ async function Connect() {
     await mongoose.connect(uri);
     console.log("Connected to mongo db");
 
-    app.get("/",home );
+    app.use("/",home );
 
     app.get("/allproducts", async (req, res) => {
       const allProducts = await Products.find();
