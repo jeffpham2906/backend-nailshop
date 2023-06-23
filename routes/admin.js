@@ -9,7 +9,7 @@ admin.post("/admin", uploadMiddleware.any(), async (req, res) => {
     const infor = await amin.find();
 
     if (infor[0].username === data.username) {
-        if (infor[0].password === data.password) res.json({ status: "OK" });
+        if (infor[0].password === data.password) return res.status(200).json({ status: "OK" });
         else res.json({ status: "Failed" });
     } else res.json({ status: "Failed" });
 });

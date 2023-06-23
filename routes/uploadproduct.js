@@ -21,7 +21,7 @@ uploadproduct.post("/uploadproduct", uploadMiddleware.any(), async (req, res) =>
 
     await Products.create(newProduct);
 
-    res.json({ status: "OK", newProduct, image: files });
+    return res.status(200).json({ status: "OK", newProduct, image: files });
 });
 
 uploadproduct.put("/uploadproduct", uploadMiddleware.any(), async (req, res) => {
@@ -45,7 +45,7 @@ uploadproduct.put("/uploadproduct", uploadMiddleware.any(), async (req, res) => 
     };
 
     await Products.replaceOne({ idProduct: data.idProduct }, editedProduct);
-    res.json({
+    return res.status(200).json({
         status: "OK",
         editedProduct: {
             hot: data.hot === "true" ? true : false,
@@ -57,7 +57,7 @@ uploadproduct.put("/uploadproduct", uploadMiddleware.any(), async (req, res) => 
 
 uploadproduct.get("/uploadproduct", async (req, res) => {
     const data = await Products.find();
-    res.json({ status: "OK", data: data });
+    return res.status(200).json({ status: "OK", data: data });
 });
 
 module.exports = uploadproduct

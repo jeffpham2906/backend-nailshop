@@ -14,12 +14,12 @@ order.post("/order", async (req, res) => {
     data.times = `${currentDay}/${currentMonth}/${currentYear} ${currentHours}:${currentMinutes}:${currentSeconds}`;
     console.log(data);
     await Orders.create(data);
-    res.json({ status: "OK" });
+    return res.status(200).json({ status: "OK" });
 });
 
 order.get("/order", async (req, res) => {
     const data = await Orders.find();
-    res.json({ status: "OK", data });
+    return res.status(200).json({ status: "OK", data });
 });
 
 

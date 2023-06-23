@@ -11,7 +11,7 @@ updateOrders.post("/updateOrders/:id", async (req, res) => {
             },
         }
     );
-    res.json({ status: "OK" });
+    return res.status(200).json({ status: "OK" });
 });
 
 

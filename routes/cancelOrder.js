@@ -12,7 +12,7 @@ cancelOrder.post("/cancelOrder/:id", async (req, res) => {
             },
         }
     );
-    res.json({ status: "OK" });
+    return res.status(200).json({ status: "OK" });
 });
 
 module.exports = cancelOrder
