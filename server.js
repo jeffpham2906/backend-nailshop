@@ -9,6 +9,8 @@ const Orders = require("./Orders");
 const uri = "mongodb://127.0.0.1:27017/nailshop";
 const app = express();
 
+const home = require("./routes/home");
+
 app.use(cors({
   origin: '*',
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH']
@@ -22,9 +24,7 @@ async function Connect() {
     await mongoose.connect(uri);
     console.log("Connected to mongo db");
 
-    app.get("/", cors(), async (req, res) => {
-      res.send('hello')
-    });
+    app.get("/",home );
 
     app.get("/allproducts", async (req, res) => {
       const allProducts = await Products.find();
