@@ -57,7 +57,7 @@ async function Connect() {
     });
     app.put("/uploadproduct", uploadMiddleware.any(), async (req, res) => {
       const data = req.body;
-      console.log(data);
+ 
       files = req.files;
       const pastImgs = data.pastImgs.length > 0 ? data.pastImgs.split(",") : [];
 
@@ -123,6 +123,13 @@ async function Connect() {
       await Orders.create(data);
       res.json({ status: "OK" });
     });
+
+    app.delete('/order/:id', async (req, res) => {
+      const idOrder = req.params.id
+
+      await Orders.deleteOne({ _id: idOrder })
+      res.status(200).json({ status: 'OK' })
+    })
 
     app.get("/orders", async (req, res) => {
       const data = await Orders.find();
