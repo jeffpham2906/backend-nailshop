@@ -4,7 +4,7 @@ const express = require("express");
 
 const cors = require("cors");
 
-const uri = "mongodb://127.0.0.1:27017/nailshop";
+const uri = "mongodb+srv://jeffpham2906:bJwMVkyecQQZhVtR@nailshop.iqqomjj.mongodb.net/";
 const app = express();
 
 const home = require("./routes/home");
