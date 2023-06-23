@@ -1,9 +1,9 @@
 const express = require('express')
-const admin = express.Router()
+const router = express.Router()
 
 const { uploadMiddleware } = require("../middleware/multerMiddleware");
 const amin = require("../admin");
-admin.post("/admin", uploadMiddleware.any(), async (req, res) => {
+router.post("/admin", uploadMiddleware.any(), async (req, res) => {
     const data = req.body;
 
     const infor = await amin.find();
@@ -14,4 +14,4 @@ admin.post("/admin", uploadMiddleware.any(), async (req, res) => {
     } else res.json({ status: "Failed" });
 });
 
-module.exports = admin
+module.exports = router
