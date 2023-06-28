@@ -35,7 +35,7 @@ async function Connect() {
       const nameFile = req.params.pathFile
       const pathFile = `/public/images/${nameFile}`
 
-      res.send(pathFile, err=>{
+      res.sendFile(pathFile, err=>{
         if(err){
           console.error(err);
           res.status(500).send('Error while access file')
