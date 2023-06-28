@@ -31,6 +31,18 @@ async function Connect() {
       res.json({ status: "OK", data: allProducts });
     });
 
+    app.get('/images/:pathFile',(req,res)=>{
+      const nameFile = req.params.pathFile
+      const pathFile = `/public/images/${nameFile}`
+
+      res.send(pathFile, err=>{
+        if(err){
+          console.error(err);
+          res.status(500).send('Error while access file')
+        }
+      })
+    })
+
     app.get("/hotproducts", async (req, res) => {
       const hotproducts = await Products.find({ hot: "true" });
       res.json({ status: "OK", data: hotproducts });
