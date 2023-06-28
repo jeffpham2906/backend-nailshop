@@ -38,23 +38,23 @@ async function Connect() {
     app.post("/uploadproduct", uploadMiddleware.any(), async (req, res) => {
       const files = req.files;
       console.log(files);
-      // const arrImages = files.map((file) => file.filename);
-      // const data = req.body;
-      // const newProduct = {
-      //   idProduct: data.idProduct,
-      //   name: data.name,
-      //   price: data.price,
-      //   sale: data.sale,
-      //   type: data.type,
-      //   hot: data.hot,
-      //   status: data.status,
-      //   description: data.description,
-      //   images: arrImages,
-      // };
+      const arrImages = files.map((file) => file.filename);
+      const data = req.body;
+      const newProduct = {
+        idProduct: data.idProduct,
+        name: data.name,
+        price: data.price,
+        sale: data.sale,
+        type: data.type,
+        hot: data.hot,
+        status: data.status,
+        description: data.description,
+        images: arrImages,
+      };
 
-      // await Products.create(newProduct);
+      await Products.create(newProduct);
 
-      res.json({ status: "OK",  image: files });
+      res.json({ status: "OK", newProduct ,image: files });
     });
     app.put("/uploadproduct", uploadMiddleware.any(), async (req, res) => {
       const data = req.body;
