@@ -37,23 +37,24 @@ async function Connect() {
     });
     app.post("/uploadproduct", uploadMiddleware.any(), async (req, res) => {
       const files = req.files;
-      const arrImages = files.map((file) => file.filename);
-      const data = req.body;
-      const newProduct = {
-        idProduct: data.idProduct,
-        name: data.name,
-        price: data.price,
-        sale: data.sale,
-        type: data.type,
-        hot: data.hot,
-        status: data.status,
-        description: data.description,
-        images: arrImages,
-      };
+      console.log(files);
+      // const arrImages = files.map((file) => file.filename);
+      // const data = req.body;
+      // const newProduct = {
+      //   idProduct: data.idProduct,
+      //   name: data.name,
+      //   price: data.price,
+      //   sale: data.sale,
+      //   type: data.type,
+      //   hot: data.hot,
+      //   status: data.status,
+      //   description: data.description,
+      //   images: arrImages,
+      // };
 
-      await Products.create(newProduct);
+      // await Products.create(newProduct);
 
-      res.json({ status: "OK", newProduct, image: files });
+      res.json({ status: "OK",  image: files });
     });
     app.put("/uploadproduct", uploadMiddleware.any(), async (req, res) => {
       const data = req.body;
@@ -162,7 +163,7 @@ async function Connect() {
       res.json({ status: "OK" });
     });
 
-    const port = 5000;
+    const port = process.env.PORT || 5000;
     app.listen(port, () => {
       console.log(`App listening in port ${port}`);
     });
