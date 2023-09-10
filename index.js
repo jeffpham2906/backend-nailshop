@@ -19,6 +19,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.static(`${__dirname}/public`));
 
+
 async function Connect() {
   try {
     await mongoose.connect(uri);
